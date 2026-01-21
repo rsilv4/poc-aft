@@ -1,17 +1,16 @@
 module "apps_fatura_dev" {
-  source  = "aws-ia/account-factory/aws"
-  version = "1.8.0"
+  source = "github.com/aws-ia/terraform-aws-control_tower_account_factory//modules/aft-account-request?ref=v1.8.0"
 
-  account_name  = "apps-fatura-dev"
-  account_email = "rsilva.pocs+apps-fatura-dev@gmail.com"
+  control_tower_parameters = {
+    AccountName               = "apps-fatura-dev"
+    AccountEmail              = "rsilva.pocs+apps-fatura-dev@gmail.com"
+    ManagedOrganizationalUnit = "Workloads"
+    SSOUserEmail              = "rsilva.pocs@gmail.com"
+    SSOUserFirstName          = "Renan"
+    SSOUserLastName           = "Silva"
+  }
 
-  managed_organizational_unit = "Workloads"
-
-  sso_user_email      = "rsilva.pocs@gmail.com"
-  sso_user_first_name = "Renan"
-  sso_user_last_name  = "Silva"
-
-  tags = {
+  account_tags = {
     environment = "dev"
     application = "apps-fatura"
     managed_by  = "aft"
